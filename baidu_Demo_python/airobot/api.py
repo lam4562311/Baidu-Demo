@@ -44,10 +44,12 @@ def get_ernie_response(prompt):
     # erniebot.ChatCompletion.create(model="ernie-3.5", messages=[{"role": "user", "content": "你好，请介绍下你自己"}])
     response = erniebot.ChatCompletion.create(
         model="ernie-3.5",
-        messages=prompt,
+        messages=[{"role": "user", "content": prompt}],
         max_output_tokens=100,
         temperature=0.7,
-        top_p=0.9,
+        top_p=0.9
     )
     print(response.get_result())
     return response.get_result()
+
+# get_ernie_response("你好呀")
