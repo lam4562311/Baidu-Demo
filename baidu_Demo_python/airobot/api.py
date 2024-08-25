@@ -19,9 +19,35 @@ print(models)
 
 # Set authentication params
 erniebot.api_type = "aistudio"
-erniebot.access_token = "<access-token-for-aistudio>"
+erniebot.access_token = "371eb4f8adc3b9df566d884c6621f2a326a8a1aa"
 
 # Create a chat completion
-response = erniebot.ChatCompletion.create(model="ernie-3.5", messages=[{"role": "user", "content": "你好，请介绍下你自己"}])
+# response = erniebot.ChatCompletion.create(model="ernie-3.5", messages=[{"role": "user", "content": "你好，请介绍下你自己"}])
 
-print(response.get_result())
+# print(response.get_result())
+
+# from erniebot.client import ErnieClient
+
+# def get_ernie_response(prompt):
+#     ernie_client = ErnieClient(api_key="your_api_key_here")
+#     response = ernie_client.generate_text(
+#         prompt=prompt,
+#         max_tokens=100,
+#         temperature=0.7,
+#         top_p=0.9,
+#         num_return_sequences=1
+#     )
+#     return response.generated_text[0]
+
+
+def get_ernie_response(prompt):
+    # erniebot.ChatCompletion.create(model="ernie-3.5", messages=[{"role": "user", "content": "你好，请介绍下你自己"}])
+    response = erniebot.ChatCompletion.create(
+        model="ernie-3.5",
+        messages=prompt,
+        max_output_tokens=100,
+        temperature=0.7,
+        top_p=0.9,
+    )
+    print(response.get_result())
+    return response.get_result()
